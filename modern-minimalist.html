@@ -1,0 +1,220 @@
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Lora:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;400;600&display=swap' rel='stylesheet'/>
+<script src='https://cdn.tailwindcss.com'></script>
+
+<style>
+  :root { --accent: #2d2d2d; --bg: #ffffff; --soft: #f8f8f8; }
+  
+  body { background: var(--bg); color: var(--accent); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  
+  .font-serif { font-family: 'Lora', serif; }
+  .font-outfit { font-family: 'Outfit', sans-serif; }
+
+  /* OVERLAY MINIMALIS */
+  #overlay {
+    position: fixed; inset: 0; background: var(--bg); z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-minimal {
+    border: 1px solid var(--accent);
+    padding: 12px 40px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    background: transparent;
+  }
+  .btn-minimal:hover { background: var(--accent); color: white; }
+
+  /* ANIMASI */
+  .reveal { opacity: 0; transform: translateY(20px); transition: 1.2s ease; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+
+  .line-draw { height: 1px; background: var(--accent); width: 0; transition: 1.5s; }
+  .reveal.active .line-draw { width: 60px; }
+
+  /* GALLERY */
+  .img-min { filter: grayscale(100%); transition: 0.7s; cursor: crosshair; }
+  .img-min:hover { filter: grayscale(0%); }
+</style>
+
+<div id="app">
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-memories.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="overlay">
+    <div class="text-center">
+      <h1 class="font-serif italic text-5xl mb-10 tracking-tight">Romeo & Juliet</h1>
+      <div class="mb-10">
+        <p class="text-[10px] uppercase tracking-[0.5em] text-gray-400 mb-2">Special Invitation For</p>
+        <p class="font-outfit text-xl font-light" id="display-nama">Guest Name</p>
+      </div>
+      <button class="btn-minimal" onclick="openWedding()">Open</button>
+    </div>
+  </div>
+
+  <div id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
+    
+    <section class="h-screen flex flex-col items-center justify-center text-center px-6">
+      <div class="reveal">
+        <p class="text-[10px] uppercase tracking-[0.8em] mb-6">The Wedding Celebration</p>
+        <h2 class="font-serif text-7xl md:text-9xl mb-4">R <span class="text-3xl align-middle mx-2 font-light italic">&</span> J</h2>
+        <div class="line-draw mx-auto my-10"></div>
+        <p class="font-outfit font-light tracking-[0.5em]">12.07.2026</p>
+      </div>
+    </section>
+
+    <section class="py-20 px-6">
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg" class="img-min w-full grayscale grayscale-0">
+        </div>
+        <div class="reveal space-y-8">
+          <h3 class="font-serif text-4xl italic">"Two souls, one heart."</h3>
+          <p class="text-sm font-light leading-loose text-gray-500">
+            Kami mengundang Bapak/Ibu untuk menjadi saksi dimulainya perjalanan hidup baru kami. Kebahagiaan kami tidak lengkap tanpa kehadiran Anda.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 bg-stone-50 px-6">
+      <div class="max-w-4xl mx-auto text-center reveal">
+        <h3 class="font-outfit text-xs uppercase tracking-[0.6em] mb-16">Save The Date</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div class="space-y-4">
+            <h4 class="font-serif text-2xl italic">Holy Matrimony</h4>
+            <p class="text-sm font-light">08.00 AM — 10.00 AM</p>
+          </div>
+          <div class="space-y-4">
+            <h4 class="font-serif text-2xl italic">The Reception</h4>
+            <p class="text-sm font-light">12.00 PM — Till End</p>
+          </div>
+        </div>
+        <div class="mt-20">
+          <p class="font-outfit text-sm font-semibold">Gedung Serbaguna Indonesia</p>
+          <p class="text-xs font-light text-gray-400 mt-2">Jakarta, Indonesia</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 px-4 reveal">
+      <div class="max-w-5xl mx-auto h-[450px] border border-gray-100 p-2">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1662.5394878963755!2d109.75576218550407!3d-7.660818041906312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ab7accffe642b%3A0x333c8c9d3b3e3b4e!2sMasjid%20Desa%20Krakal!5e0!3m2!1sid!2sid!4v1774752717189!5m2!1sid!2sid0" 
+          width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(5%);" 
+          allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <section class="py-32 px-4">
+       <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-2 reveal">
+          <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg" class="img-min h-64 w-full object-cover">
+          <img src="https://images.pexels.com/photos/17834/pexels-photo.jpg" class="img-min h-64 w-full object-cover">
+          <img src="https://images.pexels.com/photos/3352398/pexels-photo-3352398.jpeg" class="img-min h-64 w-full object-cover">
+          <img src="https://images.pexels.com/photos/256737/pexels-photo-256737.jpeg" class="img-min h-64 w-full object-cover">
+       </div>
+    </section>
+
+    <section class="py-32 px-6 bg-stone-50">
+      <div class="max-w-lg mx-auto reveal">
+        <div class="text-center mb-16">
+          <h3 class="font-serif text-4xl italic mb-4">RSVP</h3>
+          <p class="text-xs font-light tracking-widest text-gray-400">PLEASE KINDLY CONFIRM YOUR ATTENDANCE</p>
+        </div>
+        
+        <form id="rsvp-form-min" class="space-y-10">
+          <input type="text" name="nama" id="input-nama" placeholder="Full Name" class="w-full bg-transparent border-b border-gray-300 py-4 outline-none focus:border-black transition text-sm font-light" required>
+          <select name="kehadiran" class="w-full bg-transparent border-b border-gray-300 py-4 outline-none focus:border-black transition text-sm font-light">
+            <option value="Hadir">Will Attend</option>
+            <option value="Tidak Hadir">Will Not Attend</option>
+          </select>
+          <textarea name="pesan" placeholder="Message" rows="2" class="w-full bg-transparent border-b border-gray-300 py-4 outline-none focus:border-black transition text-sm font-light"></textarea>
+          
+          <button type="submit" id="btn-submit" class="btn-minimal w-full">Send Confirmation</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="py-20 text-center border-t border-gray-50">
+      <p class="text-[9px] tracking-[0.5em] text-gray-300 uppercase">Architecture of Love by 296 Studios</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  // 1. Ambil Nama Tamu
+  const uParams = new URLSearchParams(window.location.search);
+  const guest = uParams.get('to');
+  if(guest) {
+    const formatted = decodeURIComponent(guest).replace(/\+/g, ' ');
+    document.getElementById('display-nama').innerText = formatted;
+    document.getElementById('input-nama').value = formatted;
+  }
+
+  // 2. Open Invitation
+  function openWedding() {
+    const audio = document.getElementById("bgMusic");
+    const overlay = document.getElementById("overlay");
+    const main = document.getElementById("main-content");
+    
+    audio.play().catch(e => console.log("Audio play blocked"));
+    
+    overlay.style.opacity = "0";
+    setTimeout(() => {
+      overlay.classList.add("hidden");
+      main.classList.remove("hidden");
+      setTimeout(() => { 
+        main.style.opacity = "1"; 
+        revealElements(); 
+      }, 100);
+    }, 1000);
+  }
+
+  // 3. Reveal Animation on Scroll
+  function revealElements() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight * 0.85) {
+        el.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', revealElements);
+
+  // 4. RSVP GOOGLE SHEETS INTEGRATION
+  // ---------------------------------------------------------
+  // Masukkan URL Web App Script kamu di sini
+  const scriptURL = 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_DISINI'; 
+  // ---------------------------------------------------------
+
+  const form = document.getElementById('rsvp-form-min');
+  const btn = document.getElementById('btn-submit');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        btn.innerText = "Thank You";
+        alert('Your response has been recorded.');
+        form.reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        btn.disabled = false;
+        btn.innerText = "Send Confirmation";
+        if(scriptURL === 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_DISINI') {
+           alert('Demo: Data terkirim (Hubungkan Script URL untuk fungsi asli)');
+        }
+      });
+  });
+</script>
