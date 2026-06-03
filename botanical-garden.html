@@ -1,0 +1,234 @@
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root {
+  --green: #6b8f71;
+  --leaf: #a3b18a;
+  --cream: #f6f8f3;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'Montserrat', sans-serif;
+  color: #2f3e2f;
+  margin: 0;
+}
+
+.font-script { font-family: 'Great Vibes', cursive; }
+.font-serif { font-family: 'Playfair Display', serif; }
+
+/* COVER / OVERLAY */
+#overlay {
+  position: fixed; inset: 0; background: #fff; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.frame {
+  border: 1px solid var(--leaf);
+  padding: 50px 30px;
+  background: white;
+  box-shadow: 0 15px 35px rgba(107, 143, 113, 0.1);
+  position: relative;
+}
+
+/* Aksen Daun di Pojok */
+.frame::before {
+  content: '🌿'; position: absolute; top: -15px; left: -15px; font-size: 30px;
+}
+
+.btn-botanical {
+  background: var(--green);
+  color: white;
+  padding: 14px 35px;
+  border-radius: 50px;
+  letter-spacing: 2px;
+  font-size: 10px;
+  font-weight: bold;
+  transition: 0.4s;
+  border: 1px solid var(--green);
+  cursor: pointer;
+}
+
+.btn-botanical:hover {
+  background: transparent;
+  color: var(--green);
+}
+
+/* ANIMASI SCROLL */
+.fade-up { opacity: 0; transform: translateY(40px); transition: 1.2s ease; }
+.fade-up.active { opacity: 1; transform: translateY(0); }
+
+#content-main { display: none; opacity: 0; transition: opacity 1s; }
+
+/* COUNTDOWN BOX */
+.c-box { background: white; padding: 10px; border-radius: 10px; min-width: 60px; border: 1px solid var(--leaf); }
+</style>
+
+<div id="app">
+  <audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="overlay">
+    <div class="frame text-center max-w-sm mx-4">
+      <p class="text-[10px] tracking-[0.5em] text-gray-400 mb-8 uppercase">Wedding Invitation</p>
+      <h1 class="font-serif italic text-5xl mb-2">Adit</h1>
+      <p class="font-script text-5xl text-[var(--green)] my-2">&</p>
+      <h1 class="font-serif italic text-5xl mb-10">Nisa</h1>
+
+      <div class="mb-10">
+        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">Special Guest:</p>
+        <p id="guest-name" class="font-semibold text-lg border-b border-gray-100 pb-2 inline-block">Tamu Undangan</p>
+      </div>
+
+      <button class="btn-botanical" onclick="openInv()">BUKA UNDANGAN</button>
+    </div>
+  </div>
+
+  <div id="content-main">
+    
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+      <div class="fade-up active">
+        <p class="font-script text-5xl text-[var(--green)] mb-4">The Wedding Of</p>
+        <h2 class="font-serif text-6xl md:text-8xl italic mb-6">Adit & Nisa</h2>
+        <div class="w-12 h-[1px] bg-[var(--green)] mx-auto mb-6"></div>
+        <p class="tracking-[0.4em] text-xs uppercase font-semibold mb-8">10 OKTOBER 2026</p>
+        
+        <div class="flex gap-2 justify-center" id="timer">
+           <div class="c-box"><span id="days" class="block font-bold">0</span><small class="text-[9px]">HARI</small></div>
+           <div class="c-box"><span id="hours" class="block font-bold">0</span><small class="text-[9px]">JAM</small></div>
+           <div class="c-box"><span id="mins" class="block font-bold">0</span><small class="text-[9px]">MENIT</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="fade-up">
+          <img src="https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg" class="rounded-2xl shadow-2xl border-[10px] border-[var(--cream)]">
+        </div>
+        <div class="fade-up text-center md:text-left">
+          <h3 class="font-script text-5xl text-[var(--green)] mb-6">Our Love Story</h3>
+          <p class="text-gray-500 italic leading-relaxed">
+            "Seperti akar yang menghujam bumi, cinta kami tumbuh dalam kesabaran. Dan seperti daun yang menyambut mentari, kami siap mekar bersama dalam ikatan suci."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 px-6 text-center">
+      <div class="fade-up max-w-3xl mx-auto">
+        <h3 class="font-serif text-3xl mb-8 italic">Lokasi Acara</h3>
+        <div class="rounded-2xl overflow-hidden shadow-xl h-80 border-4 border-white">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1662.5394878963755!2d109.75576218550407!3d-7.660818041906312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ab7accffe642b%3A0x333c8c9d3b3e3b4e!2sMasjid%20Desa%20Krakal!5e0!3m2!1sid!2sid!4v1774752717189!5m2!1sid!2sid2" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <p class="mt-6 font-semibold">Kebun Raya Bogor</p>
+        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">Jl. Ir. H. Juanda No.13, Kota Bogor</p>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white px-6">
+      <div class="max-w-xl mx-auto fade-up bg-[var(--cream)] p-10 rounded-3xl border border-dashed border-[var(--leaf)]">
+        <h3 class="text-center font-serif italic text-3xl mb-10">Konfirmasi Kehadiran</h3>
+        <form id="rsvp-form" class="space-y-6">
+          <input name="nama" id="input-nama" placeholder="Nama Lengkap" class="w-full bg-transparent border-b border-gray-300 py-3 outline-none focus:border-[var(--green)] transition" required>
+          <select name="kehadiran" class="w-full bg-transparent border-b border-gray-300 py-3 outline-none focus:border-[var(--green)]">
+            <option value="Hadir">Saya Akan Hadir</option>
+            <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+          </select>
+          <textarea name="pesan" placeholder="Berikan Ucapan Manis..." rows="3" class="w-full bg-transparent border-b border-gray-300 py-3 outline-none focus:border-[var(--green)]"></textarea>
+          
+          <button type="submit" id="btn-kirim" class="btn-botanical w-full">KIRIM KONFIRMASI</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-400 text-[10px] tracking-[0.3em]">
+      <p>© 2026 BOTANICAL SERIES — 296 STUDIOS</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+// 1. Ambil Nama Tamu dari URL
+const p = new URLSearchParams(window.location.search);
+const t = p.get('to');
+if(t) {
+  const n = decodeURIComponent(t).replace(/\+/g, ' ');
+  document.getElementById('guest-name').innerText = n;
+  document.getElementById('input-nama').value = n;
+}
+
+// 2. Fungsi Buka Undangan
+function openInv(){
+  const audio = document.getElementById('music');
+  const overlay = document.getElementById('overlay');
+  const main = document.getElementById('content-main');
+  
+  audio.play().catch(e => console.log("Music blocked"));
+  
+  overlay.style.opacity = '0';
+  overlay.style.transform = 'scale(1.1)';
+  
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    main.style.display = 'block';
+    setTimeout(() => { 
+      main.style.opacity = '1'; 
+      animateOnScroll(); 
+    }, 50);
+  }, 1000);
+}
+
+// 3. Animasi Muncul saat Scroll
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.fade-up');
+  elements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight * 0.9) {
+      el.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', animateOnScroll);
+
+// 4. Countdown Timer
+const targetDate = new Date("Oct 10, 2026 09:00:00").getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+  if(diff > 0) {
+    document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  }
+}, 1000);
+
+// 5. RSVP ke Google Sheets (Placeholder)
+const scriptURL = 'MASUKKAN_URL_APPS_SCRIPT_DISINI';
+const form = document.getElementById('rsvp-form');
+const btn = document.getElementById('btn-kirim');
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.innerText = "MENGIRIM...";
+  
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(r => {
+      alert('Konfirmasi berhasil terkirim!');
+      btn.innerText = "TERKIRIM";
+      form.reset();
+    })
+    .catch(err => {
+      console.log(err);
+      // Fallback untuk Demo
+      if(scriptURL === 'MASUKKAN_URL_APPS_SCRIPT_DISINI') alert('Data Terkirim (Demo Mode)');
+      btn.disabled = false;
+      btn.innerText = "KIRIM KONFIRMASI";
+    });
+});
+</script>
