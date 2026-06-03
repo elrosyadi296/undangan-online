@@ -27,6 +27,7 @@
             --gold: #c5a880;         /* Muted Champagne Gold */
             --border: rgba(197, 168, 128, 0.25);
             --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --accent-red: #b03030;
         }
 
         html {
@@ -40,12 +41,63 @@
             overflow-x: hidden;
             text-align: center;
             letter-spacing: 0.5px;
+            /* Memberikan ruang di bawah agar konten footer tidak tertutup iklan layang */
+            padding-bottom: 90px;
         }
 
         h1, h2, h3, .editorial-font {
             font-family: 'Cormorant Garamond', serif;
             letter-spacing: 1px;
             font-weight: 300;
+        }
+
+        /* --- STYLING ADSENSE STICKY BOTTOM (Blends with Ivory Theme) --- */
+        .adsense-sticky-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            min-height: 80px;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--gold);
+            padding: 8px 12px;
+            text-align: center;
+            box-shadow: 0 -4px 15px rgba(43, 41, 39, 0.05);
+            z-index: 9980; /* Di bawah welcome screen (9999) agar tersembunyi saat cover aktif */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .adsense-label {
+            display: block;
+            font-size: 0.6rem;
+            color: var(--charcoal-light);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .adsbygoogle-mock {
+            width: 100%;
+            max-width: 728px;
+            height: 50px;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(252, 251, 249, 0.8),
+                rgba(252, 251, 249, 0.8) 10px,
+                rgba(245, 242, 235, 0.8) 10px,
+                rgba(245, 242, 235, 0.8) 20px
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal-light);
+            font-size: 0.75rem;
+            border: 1px dashed var(--border);
+            border-radius: 2px;
+            letter-spacing: 1px;
         }
 
         /* --- COVER OVERLAY (WELCOME SCREEN) --- */
@@ -834,8 +886,60 @@
     <!-- --- TOAST NOTIFICATION --- -->
     <div id="toastNotification" class="toast">Notifikasi</div>
 
+    <!-- --- GOOGLE ADSENSE STICKY BOTTOM ANCHOR (Only 1 Slot) --- -->
+    <div id="adsense-sticky" class="adsense-sticky-bottom">
+        <span class="adsense-label">Sponsor</span>
+        <div class="adsbygoogle-mock">
+            [ Google AdSense - Sticky Bottom Anchor Ad ]
+        </div>
+        <!-- Script AdSense Asli (Akan dimuat otomatis via JS jika bukan premium):
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:100%;height:50px"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="9999999999"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        -->
+    </div>
+
     <!-- --- JAVASCRIPT --- -->
-    <script {CSP-Guardrail-Safe}>
+    <script>
+        // ==========================================
+        // CONFIG UTAMA UNTUK INTEGRASI PREMIUM / ADSENSE
+        // ==========================================
+        const INVITATION_CONFIG = {
+            // Ganti ke 'true' untuk pengguna premium (Iklan otomatis hilang!)
+            // Ganti ke 'false' untuk pengguna gratis (Iklan otomatis terpasang)
+            isPremium: false, 
+            
+            // Masukkan ID Penayang AdSense asli Anda di sini jika isPremium = false
+            adSensePublisherId: "ca-pub-2096485944749698" 
+        };
+
+        // --- SISTEM PENANGANAN IKLAN OTOMATIS (PREMIUM VS FREE) ---
+        (function handleAdSenseSystem() {
+            if (INVITATION_CONFIG.isPremium) {
+                // JIKA USER PREMIUM:
+                // Hapus kontainer iklan layang dan hilangkan padding bottom body
+                document.addEventListener("DOMContentLoaded", () => {
+                    const stickyAd = document.getElementById("adsense-sticky");
+                    if (stickyAd) {
+                        stickyAd.remove();
+                    }
+                    document.body.style.paddingBottom = "0px";
+                });
+            } else {
+                // JIKA USER GRATIS:
+                // Inject script Google AdSense SDK secara dinamis ke dalam <head>
+                const adScript = document.createElement("script");
+                adScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${INVITATION_CONFIG.adSensePublisherId}`;
+                adScript.async = true;
+                adScript.crossOrigin = "anonymous";
+                document.head.appendChild(adScript);
+            }
+        })();
+
         // --- 1. SET NAMA TAMU DINAMIS (?to=NamaTamu) ---
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
