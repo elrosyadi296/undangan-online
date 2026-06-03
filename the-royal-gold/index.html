@@ -1,1 +1,222 @@
-show
+<link href='https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap' rel='stylesheet'/>
+<script src='https://cdn.tailwindcss.com'></script>
+
+<style>
+  :root { --gold: #c5a059; --dark: #2c2c2c; --cream: #faf7f2; }
+  
+  body { background: var(--cream); color: var(--dark); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+  
+  /* Tipografi Estetik */
+  .font-estetik { font-family: 'Pinyon Script', cursive; }
+  .font-serif { font-family: 'Playfair Display', serif; }
+
+  /* Overlay Style */
+  #overlay {
+    position: fixed; inset: 0; background: #fff; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    transition: 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .gold-border {
+    border: 1px solid var(--gold);
+    padding: 40px;
+    position: relative;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: white;
+    padding: 14px 40px;
+    letter-spacing: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    transition: 0.4s;
+    border: 1px solid transparent;
+  }
+  .btn-gold:hover { background: transparent; color: var(--gold); border-color: var(--gold); }
+
+  /* Animasi Muncul */
+  .fade-in { opacity: 0; transform: translateY(30px); transition: 1.2s ease-out; }
+  .fade-in.active { opacity: 1; transform: translateY(0); }
+
+  /* Frame Foto */
+  .img-frame { border: 8px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+</style>
+
+<div id="app">
+  <audio id="myAudio" loop>
+    <source src="https://github.com/elrosyadi296/elrosyadi296.github.io/raw/refs/heads/main/Shane%20Filan%20-%20Beautiful%20In%20White.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="overlay">
+    <div class="text-center gold-border max-w-sm mx-auto">
+      <p class="uppercase tracking-[0.5em] text-[9px] mb-8 text-gray-400">Wedding Invitation</p>
+      <h1 class="font-serif italic text-4xl mb-1">Romeo</h1>
+      <p class="font-estetik text-5xl my-2 text-[var(--gold)]">&</p>
+      <h1 class="font-serif italic text-4xl mb-8">Juliet</h1>
+      
+      <div class="mb-10 text-xs">
+        <p class="italic text-gray-400 mb-2">Kepada Yth:</p>
+        <p class="font-bold tracking-widest uppercase border-b border-gray-200 pb-2 inline-block" id="display-nama">Nama Tamu</p>
+      </div>
+      
+      <button class="btn-gold" onclick="bukaUndangan()">BUKA UNDANGAN</button>
+    </div>
+  </div>
+
+  <div id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
+    
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
+      <div class="fade-in">
+        <p class="font-estetik text-4xl text-[var(--gold)] mb-4">The Wedding of</p>
+        <h2 class="font-serif text-6xl md:text-8xl italic">Romeo <span class="text-4xl block md:inline md:mx-4 not-italic font-light">&</span> Juliet</h2>
+        <div class="w-16 h-[1px] bg-[var(--gold)] mx-auto my-8"></div>
+        <p class="tracking-[0.4em] uppercase text-xs font-semibold">12 Juli 2026</p>
+      </div>
+    </section>
+
+    <section class="py-20 bg-white px-4">
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="fade-in">
+          <img src="https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg" class="img-frame w-full h-[500px] object-cover">
+        </div>
+        <div class="fade-in text-center md:text-left space-y-6">
+          <h3 class="font-estetik text-5xl text-[var(--gold)]">Our Love Story</h3>
+          <p class="text-sm leading-relaxed text-gray-500 italic">"Mencintaimu adalah anugerah terindah, dan memilikimu adalah tujuan selamanya."</p>
+          <div class="bg-[var(--cream)] p-6 border-l-4 border-[var(--gold)]">
+            <p class="font-serif font-bold italic">Gedung Serbaguna, Indonesia</p>
+            <p class="text-xs uppercase tracking-widest mt-2">Pukul 09.00 WIB - Selesai</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 px-6 bg-[var(--cream)]">
+      <div class="max-w-xl mx-auto fade-in bg-white p-10 shadow-sm border border-gray-100">
+        <h3 class="text-center font-serif italic text-3xl mb-10">Konfirmasi Kehadiran</h3>
+        
+        <form id="rsvp-form" class="space-y-6">
+          <div>
+            <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Nama Lengkap</label>
+            <input type="text" name="nama" id="input-nama" class="w-full border-b border-gray-200 py-2 outline-none focus:border-[var(--gold)] transition" required>
+          </div>
+          <div>
+            <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Kehadiran</label>
+            <select name="kehadiran" class="w-full border-b border-gray-200 py-2 outline-none focus:border-[var(--gold)] transition">
+              <option value="Hadir">Hadir</option>
+              <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] uppercase tracking-widest font-bold text-gray-400">Pesan Singkat</label>
+            <textarea name="pesan" rows="3" class="w-full border-b border-gray-200 py-2 outline-none focus:border-[var(--gold)] transition"></textarea>
+          </div>
+          <button type="submit" id="btn-submit-rsvp" class="btn-gold w-full">KIRIM KONFIRMASI</button>
+        </form>
+      </div>
+    </section>
+<section class="py-20 bg-white px-4">
+      <div class="max-w-4xl mx-auto text-center fade-in">
+        <h3 class="font-estetik text-5xl text-[var(--gold)] mb-6">Lokasi Acara</h3>
+        <p class="font-serif italic text-lg mb-2">Gedung Serbaguna Indonesia</p>
+        <p class="text-xs uppercase tracking-widest text-gray-400 mb-10">Jl. Raya Utama No. 123, Jakarta Selatan</p>
+        
+        <div class="relative p-2 border border-[var(--gold)] max-w-3xl mx-auto shadow-2xl">
+          <div class="overflow-hidden h-80 w-full bg-gray-100">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.275333190885!2d106.80164807490412!3d-6.22738729376092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d30000001%3A0x1d8fd068867a0364!2sGelora%20Bung%20Karno%20Main%20Stadium!5e0!3m2!1sen!2sid!4v1711234567890!5m2!1sen!2sid" 
+              width="100%" 
+              height="100%" 
+              style="border:0; filter: grayscale(20%) sepia(10%);" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+        
+        <a href="https://maps.app.goo.gl/xxxx" target="_blank" class="inline-block mt-8 btn-gold">
+          BUKA PETA LOKASI
+        </a>
+      </div>
+    </section>
+    <footer class="py-12 text-center">
+      <p class="text-[10px] tracking-[0.3em] uppercase text-gray-400">Created by 296 Studios</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  // 1. Logika Ambil Nama Tamu
+  const uParams = new URLSearchParams(window.location.search);
+  const guestName = uParams.get('to');
+  if(guestName) {
+    const cleanName = decodeURIComponent(guestName).replace(/\+/g, ' ');
+    document.getElementById('display-nama').innerText = cleanName;
+    document.getElementById('input-nama').value = cleanName;
+  }
+
+  // 2. Fungsi Buka Undangan
+  function bukaUndangan() {
+    const audio = document.getElementById("myAudio");
+    const overlay = document.getElementById("overlay");
+    const main = document.getElementById("main-content");
+    
+    // Play Audio
+    audio.play().catch(e => console.log("Audio play blocked"));
+    
+    // Transisi Overlay
+    overlay.style.opacity = "0";
+    overlay.style.transform = "scale(1.1)";
+    
+    setTimeout(() => {
+      overlay.classList.add("hidden");
+      main.classList.remove("hidden");
+      setTimeout(() => { main.style.opacity = "1"; triggerFade(); }, 100);
+    }, 1200);
+  }
+
+  // 3. Scroll Trigger Animation
+  function triggerFade() {
+    const items = document.querySelectorAll('.fade-in');
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if(rect.top < window.innerHeight * 0.9) {
+        item.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', triggerFade);
+
+  // 4. KIRIM DATA KE GOOGLE SHEETS
+  // ---------------------------------------------------------
+  // PETUNJUK: Masukkan URL Web App Script kamu di variabel scriptURL di bawah
+  // ---------------------------------------------------------
+  const scriptURL = 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_DISINI'; 
+  const form = document.getElementById('rsvp-form');
+  const btnSubmit = document.getElementById('btn-submit-rsvp');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = "MENGIRIM...";
+
+    // Logika pengiriman data (Fetch API)
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        btnSubmit.innerText = "TERKIRIM!";
+        alert('Terima kasih! Konfirmasi Anda telah kami terima.');
+        form.reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        btnSubmit.disabled = false;
+        btnSubmit.innerText = "KIRIM KONFIRMASI";
+        // Simulasi sukses jika URL belum diisi (agar demo tetap jalan)
+        if(scriptURL === 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_DISINI') {
+           alert('Demo: Data berhasil terkirim (Silakan isi URL Apps Script untuk fungsi asli)');
+        }
+      });
+  });
+</script>
