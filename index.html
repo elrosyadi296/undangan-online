@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buat Undangan Digital Premium - Proses Kilat &amp; Desain Mewah</title>
+  
+  <!-- Meta Tags SEO & Open Graph -->
+  <meta name="description" content="Solusi cerdas buat undangan pernikahanmu! Proses kilat, fitur lengkap (RSVP, Maps, Musik, Nama Tamu Otomatis), dan harga ramah dikantong.">
+  <meta property="og:title" content="Buat Undangan Digital Premium - Proses Kilat &amp; Desain Mewah"/>
+  <meta property="og:description" content="Solusi cerdas buat undangan pernikahanmu! Proses kilat, fitur lengkap (RSVP, Maps, Musik, Nama Tamu Otomatis), dan harga ramah dikantong."/>
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEita0_M2O-eCuyAVlkD8OIaq8QYjANaZTr61ExHZgO5wk5R3k_-Qg-UMLUIh2Xs1yfe9vHOXM7zl_DZN09EghVT3pmPEpsV5agqavbc54CnQ0CW01eoDtXxhgmVkXReU_tUy04HvF0BgltUDzZSaf35yaVUmnE9bi9_uIjrzpxl-852I-HjE0-2W_mYhJjm/s1280/logo%20296%20studios.png"/>
+  <meta property="og:type" content="website"/>
+
+  <!-- Fonts & Favicon -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+  <link href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEita0_M2O-eCuyAVlkD8OIaq8QYjANaZTr61ExHZgO5wk5R3k_-Qg-UMLUIh2Xs1yfe9vHOXM7zl_DZN09EghVT3pmPEpsV5agqavbc54CnQ0CW01eoDtXxhgmVkXReU_tUy04HvF0BgltUDzZSaf35yaVUmnE9bi9_uIjrzpxl-852I-HjE0-2W_mYhJjm/s1280/logo%20296%20studios.png" rel="icon" sizes="32x32" type="image/png"/>
+
+  <!-- Styling (Konversi b:skin ke Standard CSS) -->
+  <style>
+    :root { 
+      --gold: #d4af37; 
+      --dark: #1a1a1a; 
+      --light: #f8f9fa; 
+    }
+    
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      scroll-behavior: smooth; 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      color: var(--dark); 
+      background: #fff; 
+      line-height: 1.6;
+    }
+    
+    /* Navbar Minimalis */
+    .nav { 
+      position: fixed; 
+      top: 0; 
+      width: 100%; 
+      padding: 20px 5%; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      z-index: 100; 
+      background: rgba(255, 255, 255, 0.9); 
+      backdrop-filter: blur(10px); 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo { 
+      font-family: 'Playfair Display', serif; 
+      font-size: 1.5rem; 
+      color: var(--gold); 
+      text-decoration: none; 
+      font-weight: 700;
+    }
+
+    /* Hero Section */
+    .hero { 
+      height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://raw.githubusercontent.com/elrosyadi296/elrosyadi296/refs/heads/main/photo-1.jfif?q=80&w=2000') center/cover no-repeat;
+      color: #fff; 
+      padding: 0 20px;
+    }
+    
+    .hero h1 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: clamp(2.5rem, 8vw, 4rem); 
+      margin-bottom: 20px; 
+      line-height: 1.2;
+    }
+    
+    .hero p { 
+      font-size: 1.1rem; 
+      max-width: 600px; 
+      margin: 0 auto 35px; 
+      opacity: 0.9; 
+    }
+
+    /* Buttons */
+    .btn { 
+      padding: 14px 32px; 
+      border-radius: 50px; 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: all 0.3s ease; 
+      display: inline-block; 
+      font-size: 0.95rem;
+    }
+    
+    .btn-gold { 
+      background: var(--gold); 
+      color: #fff !important; 
+      border: 1px solid var(--gold);
+    }
+    
+    .btn-gold:hover { 
+      background: #b8962d; 
+      border-color: #b8962d;
+      transform: translateY(-3px); 
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+    }
+    
+    .btn-outline { 
+      border: 2px solid #fff; 
+      color: #fff !important; 
+      margin-left: 10px; 
+    }
+    
+    .btn-outline:hover { 
+      background: #fff; 
+      color: var(--dark) !important; 
+      transform: translateY(-3px);
+    }
+
+    /* Section Stats/Features */
+    .section { 
+      padding: 100px 5%; 
+      max-width: 1200px; 
+      margin: auto; 
+      text-align: center; 
+    }
+    
+    .grid-templates { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 40px; 
+      margin-top: 50px; 
+    }
+    
+    /* Card Design */
+    .card { 
+      background: #fff; 
+      border-radius: 20px; 
+      overflow: hidden; 
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
+      transition: all 0.4s ease; 
+      border: 1px solid #eee; 
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card:hover { 
+      transform: translateY(-10px); 
+      box-shadow: 0 30px 60px rgba(0,0,0,0.1); 
+    }
+    
+    .card img { 
+      width: 100%; 
+      height: 250px; 
+      object-fit: cover; 
+      transition: transform 0.5s ease;
+    }
+    
+    .card:hover img {
+      transform: scale(1.03);
+    }
+    
+    .card-info { 
+      padding: 25px; 
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .card-info h3 { 
+      margin-bottom: 12px; 
+      font-family: 'Playfair Display', serif; 
+      font-size: 1.4rem;
+    }
+
+    .card-info p {
+      margin-bottom: 20px;
+    }
+
+    /* AdSense Container Styling */
+    .ads-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 5%;
+      text-align: center;
+      display: block;
+      clear: both;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 15px 5%;
+      }
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+      .btn-outline {
+        margin-left: 5px;
+        margin-top: 10px;
+      }
+      .section {
+        padding: 60px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigasi -->
+  <nav class="nav">
+    <a class="logo" href="#">UNDANGAN.</a>
+    <div>
+      <a href="#katalog" style="text-decoration:none; color:var(--dark); font-weight:600; margin-right:20px;">Katalog</a>
+      <a class="btn btn-gold" href="https://wa.me/6281332964445?text=Halo%20saya%20ingin%20pesan%20undangan" style="padding:8px 20px; font-size: 0.9rem;">Order</a>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <header class="hero">
+    <div>
+      <h1>Abadikan Momen <br/> Bahagia Anda</h1>
+      <p>Undangan digital eksklusif dengan fitur lengkap, desain responsif, dan akses selamanya.</p>
+      <a class="btn btn-gold" href="#katalog">Lihat Tema</a>
+      <a class="btn btn-outline" href="https://wa.me/6281332964445?text=Berapa%20ya,%20harga%20website%20undangannya%3F">Tanya Harga</a>
+    </div>
+  </header>
+
+  <!-- Iklan Google AdSense (Statis) -->
+  <div class="ads-container">
+    <script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2096485944749698"></script>
+    <ins class="adsbygoogle"
+         style="display:block; width:100%; min-width:250px; min-height:100px;"
+         data-ad-client="ca-pub-2096485944749698"
+         data-ad-slot="2714246134"
+         data-ad-format="autorelaxed"></ins>
+    <script>
+      (function() {
+        function loadAd() {
+          var ins = document.querySelector('.ads-container .adsbygoogle');
+          // Pastikan lebar elemen penampung > 0 agar tidak memicu TagError pada AdSense
+          if (ins && ins.offsetWidth > 0) {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          } else {
+            // Coba kembali setelah delay jika kontainer belum sepenuhnya ter-render
+            setTimeout(loadAd, 250);
+          }
+        }
+        if (document.readyState === 'complete') {
+          loadAd();
+        } else {
+          window.addEventListener('load', loadAd);
+        }
+      })();
+    </script>
+  </div>
+
+  <!-- Katalog Templates -->
+  <section class="section" id="katalog">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 10px;">Koleksi Template Terbaik</h2>
+    <p style="color:#777; font-size: 1.1rem;">Pilih desain yang mencerminkan karakter pernikahan Anda</p>
+    
+    <div class="grid-templates">
+      
+      <!-- Card 1: Royal Gold -->
+      <div class="card">
+        <div style="overflow: hidden;">
+          <img src="https://github.com/elrosyadi296/elrosyadi296/raw/refs/heads/main/royal.jfif?w=600" alt="Template Undangan Pernikahan Royal Gold"/>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>The Royal Gold</h3>
+            <p style="font-size:0.9rem; color:#888;">Kesan mewah dengan aksen emas yang elegan.</p>
+          </div>
+          <a class="btn btn-gold" href="https://undangan.296.web.id/p/the-royal-gold.html" target="_blank" style="width:100%; text-align: center;">Live Preview</a>
+        </div>
+      </div>
+      
+      <!-- Card 2: Modern Minimalist -->
+      <div class="card">
+        <div style="overflow: hidden;">
+          <img src="https://github.com/elrosyadi296/elrosyadi296/raw/refs/heads/main/modern-minimalis.jfif?w=600" alt="Template Undangan Pernikahan Modern Minimalist"/>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Modern Minimalist</h3>
+            <p style="font-size:0.9rem; color:#888;">Simpel, bersih, dan fokus pada keindahan foto.</p>
+          </div>
+          <a class="btn btn-gold" href="https://undangan.296.web.id/p/modern-minimalist.html" target="_blank" style="width:100%; text-align: center;">Live Preview</a>
+        </div>
+      </div>
+      
+      <!-- Card 3: Botanical Garden -->
+      <div class="card">
+        <div style="overflow: hidden;">
+          <img src="https://github.com/elrosyadi296/elrosyadi296/raw/refs/heads/main/botani.jfif?w=600" alt="Template Undangan Pernikahan Botanical Garden"/>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Botanical Garden</h3>
+            <p style="font-size:0.9rem; color:#888;">Nuansa alam dengan elemen bunga yang segar.</p>
+          </div>
+          <a class="btn btn-gold" href="https://undangan.296.web.id/p/botanical-garden.html" target="_blank" style="width:100%; text-align: center;">Live Preview</a>
+        </div>
+      </div>
+      
+      <!-- Card 4: Natural Minimalist -->
+      <div class="card">
+        <div style="overflow: hidden;">
+          <img src="https://raw.githubusercontent.com/elrosyadi296/elrosyadi296/main/demo4/bg.webp?w=600" alt="Template Undangan Pernikahan Natural Minimalist"/>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Natural Minimalist</h3>
+            <p style="font-size:0.9rem; color:#888;">Simpel, Elegan, dan Natural. Menyatu dengan tema alam.</p>
+          </div>
+          <a class="btn btn-gold" href="https://undangan.296.web.id/p/demo4.html" target="_blank" style="width:100%; text-align: center;">Live Preview</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section style="background: var(--light); padding: 100px 5%; text-align: center;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 20px;">Siap Membuat Undangan Anda?</h2>
+    <p style="margin-bottom: 40px; font-size: 1.1rem; color: #555;">Proses cepat hanya 1 hari kerja. Harga mulai Rp 10.000.</p>
+    <a class="btn btn-gold" href="https://wa.me/6281332964445?text=Halo%20saya%20ingin%20pesan%20undangan" style="padding: 20px 50px; font-size: 1.1rem; letter-spacing: 1px;">HUBUNGI KAMI SEKARANG</a>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #111; color: rgba(255, 255, 255, 0.7); padding: 50px 20px; text-align: center; font-size: 0.9rem;">
+    <p>&copy; 2026 | 296 GROUP - Luxury Digital Invitation</p>
+  </footer>
+
+</body>
+</html>
