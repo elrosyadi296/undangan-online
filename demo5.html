@@ -1,0 +1,323 @@
+<!--1. HEADER & EXTERNAL RESOURCES-->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Poppins:wght@300;400;600&amp;family=Amiri&amp;display=swap" rel="stylesheet"></link>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  /* FONT DEFINITIONS */
+  .font-accent { font-family: 'Great Vibes', cursive; }
+  .amiri-font { font-family: 'Amiri', serif; }
+  
+  /* BASE LAYOUT */
+  #invite-wrapper {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    background: url('https://github.com/elrosyadi296/elrosyadi296/raw/refs/heads/main/undangan/bg1.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  /* OVERLAY UNTUK KETERBACAAN TEKS */
+  #invite-wrapper::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.6); /* Overlay putih transparan */
+    z-index: 0;
+  }
+
+  /* WRAPPER KONTEN AGAR DI DEPAN OVERLAY */
+  #cover, #main-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ANIMASI FADE IN SAAT SCROLL */
+  .fade { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+  .fade.show { opacity: 1; transform: translateY(0); }
+
+  /* COVER STYLING */
+  #cover {
+    position: fixed; inset: 0; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    z-index: 9999; text-align: center; padding: 20px; transition: 0.8s;
+  }
+
+  /* GLASSMORPHISM CARD */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* COUNTDOWN & DECORATION */
+  .count-box {
+    background: linear-gradient(135deg, #ec4899, #f472b6);
+    color: white; padding: 10px; border-radius: 12px; min-width: 70px;
+  }
+
+  .flower {
+    position: fixed; top: -30px; font-size: 20px;
+    pointer-events: none; z-index: 9998;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0.5; }
+  }
+
+  #video-opening {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 100000; background: black;
+  }
+
+  .hidden-custom { display: none !important; }
+</style>
+
+<div id="invite-wrapper">
+  <!--AUDIO-->
+  <audio id="music" loop="">
+    <source src="https://github.com/elrosyadi296/elrosyadi296.github.io/raw/refs/heads/main/Shane%20Filan%20-%20Beautiful%20In%20White.mp3" type="audio/mp3"></source>
+  </audio>
+
+  <!--VIDEO OPENING-->
+  <video autoplay="" id="video-opening" muted="" playsinline="">
+    <source src="https://github.com/elrosyadi296/elrosyadi296/raw/refs/heads/main/undangan/motion.mp4" type="video/mp4"></source>
+  </video>
+
+  <!--COVER SECTION-->
+  <div id="cover">
+    <h2 class="font-accent text-4xl text-pink-600 mb-2">The Wedding Of</h2>
+    <h1 class="text-5xl font-bold mb-2 drop-shadow-sm">Luthfi &amp; Yanti</h1>
+    <p class="text-gray-700 font-semibold mb-6">30 Mei 2026</p>
+    <img class="w-64 mb-6 drop-shadow-xl" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGLJ8r2VsjsL-SJG05ZUJntp2vWAkjGDvVyi9Aq64eKv8s6C7jmqmKmseHbVUXGidWnQb0l7n3lOv291Kau0OOIpGd1sGngiM1mnZaUu5Gt99ZiNdVbZ9C_nyY2HrlL60tjhroXcZ30SQxNcQX_WJM66VYHLDSyqPmPEghLxDAsgbRnuf9BkckfG4YF6gm/s1536/envelope-navy.png" />
+    <p class="text-sm text-gray-600 mb-4 bg-white/50 px-4 py-1 rounded-full" id="nama-tamu-cover"></p>
+    <button class="bg-pink-600 hover:bg-pink-700 text-white px-10 py-3 rounded-full font-bold shadow-xl transition-all scale-105 active:scale-95" onclick="bukaUndangan()">BUKA UNDANGAN</button>
+  </div>
+
+  <!--MAIN CONTENT-->
+  <div class="max-w-2xl mx-auto p-6 space-y-12 hidden-custom" id="main-content">
+    
+    <!--SALAM-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500 text-center mt-10">
+      <p class="amiri-font text-3xl text-pink-600 mb-4">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</p>
+      <p class="italic text-gray-700">Atas Rahmat Allah 'Azza wa Jalla, kami bermaksud mengundang Anda di acara Kami. Merupakan suatu kehormatan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+    </section>
+
+    <!--MEMPELAI-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500 text-center">
+      <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
+        <div class="text-center">
+          <img class="rounded-full mx-auto w-32 h-32 object-cover border-4 border-pink-200 shadow-lg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFTy1sqhyphenhyphenbMKSzbIHEN1ukS052CY5bwf9tPRXIt8y0xnVHwNP0eR1q4mBVUbI0gYfcbU0ABLP6F4aLsffWOJLmmIuO01WAwbgtDUxSn2yZA4jqH0R5Q79qFs-tHHbA-uQSKDYyWmQammq3yCsDcBH7SrYxa9QMZdHY-1hZviy-3MiE6QD9kc_FLGcaejzK/s320/SAVE_20260402_092957.jpg.jpeg" />
+          <h3 class="text-xl font-bold mt-2">Luthfi Rosyadi</h3>
+        </div>
+        <p class="font-accent text-5xl text-pink-500">&amp;</p>
+        <div class="text-center">
+          <img class="rounded-full mx-auto w-32 h-32 object-cover border-4 border-pink-200 shadow-lg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdzSCkTB0cXXbbDagDYXDVqILj53-Ud4s6HXq_baFGo0MIQ4MZjnTaduEgtnFoFH_DalbQAueyVjewPJZpmo0qo1q5ShnfsCOH1hfpBAC64BdSS6DbnpdEXY89Y_FwQxOESW4DtCbPARjLYjCx-ZbPHH7AYLU9-LSF9cnf63z6TV7ZYNhdjFQXN3uamtpA/s320/SAVE_20260402_092940.jpg.jpeg" />
+          <h3 class="text-xl font-bold mt-2">Latifah Hidayanti</h3>
+        </div>
+      </div>
+    </section>
+
+    <!--COUNTDOWN-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500 text-center">
+      <h2 class="font-accent text-5xl text-pink-600 mb-4">Save The Date</h2>
+      <div class="bg-white/70 p-4 rounded-xl mb-4">
+        <p class="font-bold text-pink-600 text-lg uppercase">Akad Nikah &amp; Resepsi</p>
+        <p class="font-bold text-pink-600 text-lg uppercase">Sabtu, 30 Mei 2026</p>
+        <p class="font-bold text-pink-500 text-lg uppercase">Pukul 08.00 WIB</p>
+        <p class="text-sm">Dk. Krakal, Tegalrejo, Poncowarno, Kebumen</p>
+      </div>
+      <div class="flex justify-center gap-3">
+        <div class="count-box"><div id="cd-d">00</div><small>Hari</small></div>
+        <div class="count-box"><div id="cd-h">00</div><small>Jam</small></div>
+        <div class="count-box"><div id="cd-m">00</div><small>Menit</small></div>
+        <div class="count-box"><div id="cd-s">00</div><small>Detik</small></div>
+      </div>
+    </section>
+
+    <!--AYAT-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500 text-center">
+      <p class="amiri-font text-2xl leading-loose">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً</p>
+      <p class="text-sm text-gray-700 italic mt-4">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri..." (QS. Ar-Rum: 21)</p>
+    </section>
+
+    <!--TASYAKURAN WALIMATUL 'URSY-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500 text-center">
+      <h2 class="font-accent text-5xl text-pink-600 mb-4">Tasyakuran Walimatul 'Ursy</h2>
+      <div class="bg-white/70 p-4 rounded-xl mb-4">
+        <p class="font-bold text-pink-600 text-lg uppercase">Minggu, 31 Mei 2026</p>
+        <p class="text-sm">Dk. Tugu, Tepakyang, Adimulyo, Kebumen</p>
+      </div>
+    </section>
+    
+    <!--RSVP-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500">
+      <h3 class="text-xl font-bold mb-6 text-center text-pink-600">💌 Konfirmasi Kehadiran</h3>
+      <form class="space-y-3" id="form-rsvp">
+        <input class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-pink-400" id="rsvp-nama" required="" type="text" />
+        <select class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-pink-400" id="rsvp-hadir">
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak Hadir">Tidak Hadir</option>
+        </select>
+        <textarea class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-pink-400" id="rsvp-ucapan" placeholder="Ucapan &amp; Doa..." rows="3"></textarea>
+        <button class="bg-pink-600 text-white py-3 w-full rounded-xl font-bold shadow-lg hover:bg-pink-700 transition" type="submit">Kirim Konfirmasi</button>
+      </form>
+    </section>
+
+    <!--DAFTAR UCAPAN-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500">
+      <h3 class="text-xl font-bold mb-4 text-center text-pink-600">Daftar Ucapan &amp; Doa</h3>
+      <div class="space-y-4 max-h-80 overflow-y-auto p-2 text-sm" id="display-ucapan">
+        <p class="text-center italic text-gray-400">Memuat ucapan...</p>
+      </div>
+    </section>
+
+    <!--GIFT-->
+    <section class="fade glass-card p-8 rounded-2xl shadow-xl border-b-4 border-pink-500 text-center">
+      <h3 class="font-accent text-4xl text-pink-600 mb-4">Wedding Gift</h3>
+      <p class="text-gray-600 text-sm mb-2">Bank BNI: 0765219830</p>
+      <button class="bg-pink-100 text-pink-600 px-6 py-1 rounded-full text-xs font-bold mb-6 hover:bg-pink-200" onclick="copyText()">Salin Rekening</button>
+      <p class="text-sm">QRIS | Scan Here</p>
+      <img class="mx-auto w-44 rounded-xl shadow-md border-2 border-white" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyPs9c0mclx5mR6972fWelFfDOow3aefgEutOx78qc0duXB9Wa5d5gBAASMlqrC3zcdrW0cdwG5JMYuDzQ0KwuqTnVBJtcToMlXghzgncgZ559IupCeEgHn0UY7D0oGc0DdWY5uELERxNvkl4Q8xfxhKHYuUXDbfZ1TAATgwGAMRh5EeGJsomk6l99FSWa/s976/qris.jpeg" />
+    </section>
+
+    <!--MAPS-->
+    <section class="fade glass-card p-2 rounded-2xl shadow-xl border-b-4 border-pink-500 h-64 overflow-hidden">
+      <div class="bg-white/70 p-4 rounded-xl mb-4">
+        <p class="font-bold text-pink-600 text-lg">Lokasi Akad Nikah</p>
+      </div>
+      <iframe class="w-full h-full rounded-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1662.5394878963755!2d109.75576218550407!3d-7.660818041906312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ab7accffe642b%3A0x333c8c9d3b3e3b4e!2sMasjid%20Desa%20Krakal!5e0!3m2!1sid!2sid!4v1774752717189!5m2!1sid!2sid" style="border: 0;"></iframe>
+    </section>
+        
+    <!--MAPS-->
+    <section class="fade glass-card p-2 rounded-2xl shadow-xl border-b-4 border-pink-500 h-64 overflow-hidden">
+      <div class="bg-white/70 p-4 rounded-xl mb-4">
+        <p class="font-bold text-pink-600 text-lg">Lokasi Tasyakuran Walimatul 'Ursy</p>
+      </div>
+      <iframe class="w-full h-full rounded-xl" src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d3953.9467868557977!2d109.5492130738036!3d-7.688860226129106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e0!4m4!2s-7.689006%2C%20109.551858!3m2!1d-7.689006!2d109.551858!4m5!1s0x2e653547271fc2cf%3A0xe9ef29b9c9e866d2!2sToko%20SRC%20Bu%20Joko%2C%20Jl.%20Kaleng%2C%20RT.03%2FRW.03%2C%20Tugu%2C%20Tepakyang%2C%20Kec.%20Adimulyo%2C%20Kabupaten%20Kebumen%2C%20Jawa%20Tengah%2054363%2C%20Indonesia!3m2!1d-7.688810699999999!2d109.5517919!5e0!3m2!1sid!2sus!4v1778691476668!5m2!1sid!2sus" style="border: 0;"></iframe>
+      </section>
+
+    <footer class="text-center py-10 opacity-70 text-xs">
+      <p class="bg-white/30 inline-block px-4 py-1 rounded-full">Dibuat dengan ❤️ oleh 296 DEVELOPER</p>
+    </footer>
+  </div>
+
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyO7GH5voW_Gch5m3JPpVOXf75K-MUHGLwSO2WQ7mEdWN8iokbtNFjfFqV9PGoZKnk_/exec';
+
+// 1. URL & TAMU
+const u = new URLSearchParams(window.location.search);
+const t = u.get("to");
+if(t) {
+  document.getElementById("nama-tamu-cover").innerText = "Kepada Yth: " + decodeURIComponent(t);
+  document.getElementById("rsvp-nama").value = decodeURIComponent(t);
+}
+
+// 2. VIDEO HANDLING
+const video = document.getElementById('video-opening');
+video.onended = () => hapusVideo();
+setTimeout(() => hapusVideo(), 2500); 
+
+function hapusVideo() {
+  video.style.transition = "opacity 1s";
+  video.style.opacity = "0";
+  setTimeout(() => video.classList.add("hidden-custom"), 1000);
+}
+
+// 3. BUKA UNDANGAN
+function bukaUndangan() {
+  const c = document.getElementById("cover");
+  const m = document.getElementById("main-content");
+  const s = document.getElementById("music");
+  
+  c.style.opacity = "0";
+  setTimeout(() => {
+    c.classList.add("hidden-custom");
+    m.classList.remove("hidden-custom");
+    s.play().catch(e => console.log("Audio play blocked"));
+    window.scrollTo(0,0);
+    loadUcapan();
+  }, 800);
+}
+
+// 4. COUNTDOWN
+const target = new Date("May 30, 2026 08:00:00").getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const d = target - now;
+  if(d > 0){
+    document.getElementById("cd-d").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
+    document.getElementById("cd-h").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById("cd-m").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById("cd-s").innerText = Math.floor((d % (1000 * 60)) / 1000);
+  }
+}, 1000);
+
+// 5. RSVP & UCAPAN
+async function loadUcapan() {
+  const container = document.getElementById("display-ucapan");
+  try {
+    const response = await fetch(SCRIPT_URL);
+    const result = await response.json();
+    if (result.status === "success" && result.data.length > 0) {
+      container.innerHTML = "";
+      result.data.reverse().forEach(item => {
+        const div = document.createElement("div");
+        div.className = "bg-white/60 p-3 rounded-lg border-l-4 border-pink-400 shadow-sm mb-2";
+        div.innerHTML = `<p class="font-bold text-pink-700 text-xs">${item.nama} <span class="font-normal text-gray-500 text-[10px]">${item.kehadiran}</span></p>
+                         <p class="italic text-gray-600 text-xs mt-1">"${item.ucapan || '-'}"</p>`;
+        container.appendChild(div);
+      });
+    } else {
+      container.innerHTML = "<p class='text-center italic text-gray-400'>Belum ada ucapan.</p>";
+    }
+  } catch (e) {
+    container.innerHTML = "<p class='text-center text-red-400'>Gagal memuat ucapan.</p>";
+  }
+}
+
+document.getElementById("form-rsvp").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.disabled = true; btn.innerText = "Mengirim...";
+  
+  const fd = new FormData();
+  fd.append('nama', document.getElementById("rsvp-nama").value);
+  fd.append('hadir', document.getElementById("rsvp-hadir").value);
+  fd.append('ucapan', document.getElementById("rsvp-ucapan").value);
+
+  fetch(SCRIPT_URL, { method: 'POST', body: fd })
+  .then(() => {
+    alert("Konfirmasi terkirim!");
+    e.target.reset();
+    loadUcapan();
+  })
+  .finally(() => {
+    btn.disabled = false; btn.innerText = "Kirim Konfirmasi";
+  });
+});
+
+// 6. DECORATION & UTILS
+function copyText() {
+  navigator.clipboard.writeText("0765219830").then(() => alert("Rekening disalin!"));
+}
+
+function createF() {
+  for(let i=0; i<15; i++){
+    let f = document.createElement("div");
+    f.className = "flower"; f.innerHTML = "🌸";
+    f.style.left = Math.random() * 100 + "%";
+    f.style.animationDuration = (4 + Math.random() * 5) + "s";
+    f.style.animationDelay = Math.random() * 3 + "s";
+    document.body.appendChild(f);
+  }
+}
+createF();
+
+const observer = new IntersectionObserver(ents => {
+  ents.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
+}, { threshold: 0.1 });
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+</script>
