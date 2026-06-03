@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- -->
     <style>
         /* --- DESIGN TOKENS & RESET --- */
         * {
@@ -28,6 +29,7 @@
             --text-muted: #c9bccc;
             --border: rgba(229, 192, 96, 0.2);
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --accent-red: #ff4d4d;
         }
 
         html {
@@ -40,10 +42,61 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             text-align: center;
+            /* Memberikan ruang di bawah agar konten footer tidak tertutup iklan layang */
+            padding-bottom: 90px;
         }
 
         h1, h2, h3, .wedding-font {
             font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        /* --- STYLING ADSENSE STICKY BOTTOM (Blends with Amethyst Theme) --- */
+        .adsense-sticky-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            min-height: 80px;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--gold);
+            padding: 8px 12px;
+            text-align: center;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+            z-index: 9980; /* Di bawah welcome screen (9999) agar tersembunyi saat cover aktif */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .adsense-label {
+            display: block;
+            font-size: 0.6rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .adsbygoogle-mock {
+            width: 100%;
+            max-width: 728px;
+            height: 50px;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(22, 8, 38, 0.8),
+                rgba(22, 8, 38, 0.8) 10px,
+                rgba(40, 18, 66, 0.8) 10px,
+                rgba(40, 18, 66, 0.8) 20px
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            border: 1px dashed var(--border);
+            border-radius: 4px;
             letter-spacing: 1px;
         }
 
@@ -190,7 +243,6 @@
             margin: 30px auto;
         }
 
-        /* Scroll Animation Class */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -489,7 +541,6 @@
             padding-right: 10px;
         }
 
-        /* Sembunyikan scrollbar bawaan tapi biarkan fungsional */
         .wishes-display::-webkit-scrollbar {
             width: 5px;
         }
@@ -537,7 +588,6 @@
             line-height: 1.5;
         }
 
-        /* Toast Notifikasi Kustom */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -560,7 +610,6 @@
             opacity: 1;
         }
 
-        /* --- RESPONSIVE LAYOUTS --- */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 3rem;
@@ -594,12 +643,10 @@
 
     <!-- --- FLOATING MUSIC CONTROL --- -->
     <button class="music-toggle" id="audio-btn" onclick="toggleAudio()" aria-label="Toggle Background Music">
-        <!-- Ikon Play/Pause Musik SVG -->
         <svg id="icon-music" viewBox="0 0 24 24">
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
         </svg>
     </button>
-    <!-- Ganti URL ini dengan file mp3 syahdu pilihan Anda -->
     <audio id="bg-music" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
     <!-- --- HERO HEADER --- -->
@@ -641,7 +688,6 @@
         <div class="sec-divider reveal"></div>
         
         <div class="event-grid">
-            <!-- Akad Nikah -->
             <div class="event-card reveal">
                 <h3>Akad Nikah</h3>
                 <div class="event-time">08:00 - 10:00 WIB</div>
@@ -650,7 +696,6 @@
                 <a href="https://maps.google.com" target="_blank" class="btn-gold" style="padding: 10px 20px; font-size: 0.75rem;">Petunjuk Lokasi</a>
             </div>
 
-            <!-- Resepsi -->
             <div class="event-card reveal">
                 <h3>Resepsi Pernikahan</h3>
                 <div class="event-time">11:00 - 15:00 WIB</div>
@@ -680,7 +725,6 @@
         <p class="couple-intro reveal" style="margin-bottom: 20px;">Kemudahan bagi Anda yang ingin memberikan tanda kasih untuk mengiringi awal lembaran hidup baru kami:</p>
         
         <div class="gift-container reveal">
-            <!-- Bank Mandiri -->
             <div class="gift-card">
                 <div class="bank-info">
                     <span class="bank-name">BANK MANDIRI</span>
@@ -688,8 +732,6 @@
                 </div>
                 <div class="acc-number">1370012345678</div>
                 <div class="acc-owner">A.n. Aris Setiawan</div>
-            </div>
-
             <!-- Bank BCA -->
             <div class="gift-card">
                 <div class="bank-info">
@@ -731,22 +773,13 @@
                 <button type="submit" class="btn-gold" style="width: 100%;">Kirim Ucapan</button>
             </form>
 
-            <!-- Menampilkan Ucapan yang Dikirim -->
             <div class="wishes-display" id="wishesBox">
-                <!-- Data Mock Ucapan Awal -->
                 <div class="wish-item">
                     <div class="wish-header">
                         <span class="wish-name">Kel. Hermawan Yudha</span>
                         <span class="wish-status">Hadir</span>
                     </div>
                     <p class="wish-text">Selamat menempuh hidup baru Rara & Aris! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.</p>
-                </div>
-                <div class="wish-item">
-                    <div class="wish-header">
-                        <span class="wish-name">Dewi Fitriani</span>
-                        <span class="wish-status">Hadir</span>
-                    </div>
-                    <p class="wish-text">Barakallahulakuma wa baraka 'alaikuma wa jama'a bainakuma fii khair. Turut bahagia sekali ya, sis!</p>
                 </div>
             </div>
         </div>
@@ -762,8 +795,60 @@
     <!-- --- TOAST NOTIFICATION --- -->
     <div id="toastNotification" class="toast">Notifikasi</div>
 
+    <!-- --- GOOGLE ADSENSE STICKY BOTTOM ANCHOR (Only 1 Slot) --- -->
+    <div id="adsense-sticky" class="adsense-sticky-bottom">
+        <span class="adsense-label">Sponsor</span>
+        <div class="adsbygoogle-mock">
+            [ Google AdSense - Sticky Bottom Anchor Ad ]
+        </div>
+        <!-- Script AdSense Asli (Akan dimuat otomatis via JS jika bukan premium):
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:100%;height:50px"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="9999999999"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        -->
+    </div>
+
     <!-- --- JAVASCRIPT --- -->
     <script>
+        // ==========================================
+        // CONFIG UTAMA UNTUK INTEGRASI PREMIUM / ADSENSE
+        // ==========================================
+        const INVITATION_CONFIG = {
+            // Ganti ke 'true' untuk pengguna premium (Iklan otomatis hilang!)
+            // Ganti ke 'false' untuk pengguna gratis (Iklan otomatis terpasang)
+            isPremium: false, 
+            
+            // Masukkan ID Penayang AdSense asli Anda di sini jika isPremium = false
+            adSensePublisherId: "ca-pub-XXXXXXXXXXXXXXXX" 
+        };
+
+        // --- SISTEM PENANGANAN IKLAN OTOMATIS (PREMIUM VS FREE) ---
+        (function handleAdSenseSystem() {
+            if (INVITATION_CONFIG.isPremium) {
+                // JIKA USER PREMIUM:
+                // Hapus kontainer iklan layang dan hilangkan padding bottom body
+                document.addEventListener("DOMContentLoaded", () => {
+                    const stickyAd = document.getElementById("adsense-sticky");
+                    if (stickyAd) {
+                        stickyAd.remove();
+                    }
+                    document.body.style.paddingBottom = "0px";
+                });
+            } else {
+                // JIKA USER GRATIS:
+                // Inject script Google AdSense SDK secara dinamis ke dalam <head>
+                const adScript = document.createElement("script");
+                adScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${INVITATION_CONFIG.adSensePublisherId}`;
+                adScript.async = true;
+                adScript.crossOrigin = "anonymous";
+                document.head.appendChild(adScript);
+            }
+        })();
+
         // --- 1. SET NAMA TAMU DINAMIS DARI URL PARAMS (?to=NamaTamu) ---
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
@@ -781,7 +866,6 @@
         function bukaUndangan() {
             welcomeScreen.classList.add('unlocked');
             
-            // Mencoba memutar audio saat halaman terbuka (didahului interaksi klik user)
             bgMusic.play().then(() => {
                 document.getElementById('icon-music').innerHTML = `
                     <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -790,7 +874,6 @@
                 console.log("Autoplay music terhalang kebijakan browser.");
             });
 
-            // Aktifkan scroll animasi pertama kali
             revealSections();
         }
 
@@ -815,7 +898,7 @@
             for (let i = 0; i < reveals.length; i++) {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 100; // threshold dalam px
+                const elementVisible = 100;
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add('active');
@@ -823,13 +906,13 @@
             }
         }
 
-        // --- 5. CLIPBOARD COPY ENGINE (Kompatibel dengan Iframe Sandbox) ---
+        // --- 5. CLIPBOARD COPY ENGINE ---
         function copyToClipboard(nomorRekening, namaBank) {
             const tempInput = document.createElement("input");
             tempInput.value = nomorRekening;
             document.body.appendChild(tempInput);
             tempInput.select();
-            tempInput.setSelectionRange(0, 99999); // Mobile Support
+            tempInput.setSelectionRange(0, 99999);
 
             try {
                 const success = document.execCommand("copy");
@@ -855,7 +938,7 @@
             }, 3000);
         }
 
-        // --- 7. RSVP FORM SUBMISSION (In-Memory State + Display Update) ---
+        // --- 7. RSVP FORM SUBMISSION ---
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -863,7 +946,6 @@
             const status = document.getElementById('inputStatus').value;
             const ucapan = document.getElementById('inputUcapan').value;
 
-            // Membuat element ucapan baru secara dinamis
             const wishesBox = document.getElementById('wishesBox');
             const newWish = document.createElement('div');
             newWish.className = 'wish-item';
@@ -875,10 +957,8 @@
                 <p class="wish-text">${escapeHtml(ucapan)}</p>
             `;
 
-            // Masukkan di barisan paling atas list ucapan
             wishesBox.insertBefore(newWish, wishesBox.firstChild);
 
-            // Bersihkan form
             document.getElementById('rsvpForm').reset();
             showToast("Ucapan Anda Berhasil Dikirim! ❤️");
         });
@@ -895,3 +975,5 @@
     </script>
 </body>
 </html>
+```
+eof
