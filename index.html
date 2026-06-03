@@ -27,6 +27,10 @@
     <!-- --- FAVICON (SVG Crown Emoji) --- -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
 
+    <!-- GOOGLE ADSENSE SCRIPT CODE -->
+    <!-- Ganti 'ca-pub-XXXXXXXXXXXXXXXX' di bawah ini dengan ID Penayang Google AdSense Anda yang asli jika sudah siap tayang -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
     <!-- --- GOOGLE FONTS --- -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +56,47 @@
             --border: #2a2a2a;
             --accent-red: #ff4d4d;
         }
+        /* */
+        /* --- STYLING GOOGLE ADSENSE PLACEHOLDER --- */
+        .adsense-container {
+            margin: 40px auto;
+            padding: 12px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            max-width: 970px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
+        .adsense-label {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .ads-by-google-mock {
+            min-height: 90px;
+            background: repeating-linear-gradient(
+                45deg,
+                #151515,
+                #151515 10px,
+                #202020 10px,
+                #202020 20px
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555555;
+            font-size: 0.8rem;
+            border: 1px dashed #3a3a3a;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -647,7 +691,26 @@
         <p>Pilih dari katalog desain undangan pernikahan premium terpilih kami. Buat undangan Anda sendiri sekarang dengan opsi Tanpa Iklan super hemat atau paket GRATIS selamanya.</p>
         <a href="#katalog" class="btn">Lihat Pilihan Desain</a>
     </section>
-
+    
+    <!-- ADSENSE SLOT 1: Atas Halaman (Dibawah Hero) -->
+    <div class="adsense-container">
+        <span class="adsense-label">Sponsor / Iklan</span>
+        <!-- Ini adalah placeholder visual. Jika iklan aktif, ganti isi div ini dengan kode ins asli dari AdSense -->
+        <div class="ads-by-google-mock">
+            [ Google AdSense - Responsive Banner Slot 1 ]
+        </div>
+        <!-- Kode Asli AdSense (Hapus komentar di bawah ini saat siap tayang):
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        -->
+    </div>
     <!-- FITUR UTAMA -->
     <section class="section" id="fitur">
         <h2 class="section-title">Fitur Premium <span>Tanpa Batas</span></h2>
@@ -728,7 +791,24 @@
 
         </div>
     </section>
-
+    <!-- ADSENSE SLOT 2: Tengah Halaman (Antara Katalog & Daftar Harga) -->
+    <div class="adsense-container">
+        <span class="adsense-label">Sponsor / Iklan</span>
+        <div class="ads-by-google-mock" style="min-height: 120px;">
+            [ Google AdSense - In-Feed / Multiplex Banner Slot 2 ]
+        </div>
+        <!-- Kode Asli AdSense (Hapus komentar di bawah ini saat siap tayang):
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-gw-3+1f-3d+2z"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="2345678901"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        -->
+    </div>
     <!-- DAFTAR HARGA & PAKET -->
     <section class="section" id="harga">
         <h2 class="section-title">Investasi <span>Terbaik Anda</span></h2>
@@ -821,7 +901,24 @@
             </form>
         </div>
     </section>
-
+     <!-- ADSENSE SLOT 3: Bawah Halaman (Diatas Footer) -->
+    <div class="adsense-container" style="margin-bottom: 60px;">
+        <span class="adsense-label">Sponsor / Iklan</span>
+        <div class="ads-by-google-mock">
+            [ Google AdSense - Anchor / Footer Banner Slot 3 ]
+        </div>
+        <!-- Kode Asli AdSense (Hapus komentar di bawah ini saat siap tayang):
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="3456789012"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        -->
+    </div>
     <!-- MODAL PILIHAN PAKET (NEW POPUP INTERACTION) -->
     <div id="paketModal" class="modal">
         <div class="modal-content">
