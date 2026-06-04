@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wedding of Adrian & Clara</title>
+  
+  <!-- 1. FONTS & EXTERNAL RESOURCES -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Amiri&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- --- FAVICON (SVG Crown Emoji) --- -->
+    <link href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEita0_M2O-eCuyAVlkD8OIaq8QYjANaZTr61ExHZgO5wk5R3k_-Qg-UMLUIh2Xs1yfe9vHOXM7zl_DZN09EghVT3pmPEpsV5agqavbc54CnQ0CW01eoDtXxhgmVkXReU_tUy04HvF0BgltUDzZSaf35yaVUmnE9bi9_uIjrzpxl-852I-HjE0-2W_mYhJjm/s1280/logo%20296%20studios.png" rel="icon" sizes="32x32" type="image/png"
+
+
+  <style>
+    /* CUSTOM FONT DEFINITIONS */
+    .font-title { font-family: 'Cinzel Decorative', serif; }
+    .font-serif-lux { font-family: 'Playfair Display', serif; }
+    .font-sans-lux { font-family: 'Montserrat', sans-serif; }
+    .font-arabic { font-family: 'Amiri', serif; }
+    
+    /* BASE LAYOUT */
+    #invite-wrapper {
+      font-family: 'Montserrat', sans-serif;
+      color: #1e293b;
+      min-height: 100vh;
+      /* Background mewah bertema floral emas & sage */
+      background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(241,245,249,0.9) 100%),
+                  url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* OVERLAY UNTUK SENSASI MEWAH */
+    #invite-wrapper::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.05) 0%, rgba(20, 83, 45, 0.08) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* CONTAINER LAYERS */
+    #cover, #main-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* SMOOTH SCROLL FADE IN ANIMATION */
+    .fade { 
+      opacity: 0; 
+      transform: translateY(40px); 
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+    .fade.show { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+
+    /* COVER STYLING */
+    #cover {
+      position: fixed; 
+      inset: 0; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      z-index: 999; 
+      text-align: center; 
+      padding: 24px; 
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      background: radial-gradient(circle, rgba(254,254,252,0.98) 0%, rgba(244,245,240,0.98) 100%);
+    }
+
+    /* ULTRA CLASSY GLASSMORPHISM */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.25); /* Sentuhan warna emas tipis */
+      box-shadow: 0 10px 30px -10px rgba(20, 83, 45, 0.1);
+    }
+
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #c5a850 0%, #e8d08d 50%, #b3923b 100%);
+    }
+
+    .gold-text {
+      background: linear-gradient(135deg, #b3923b 0%, #e8d08d 50%, #917122 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .border-gold {
+      border-image: linear-gradient(to right, #b3923b, #e8d08d, #b3923b) 1;
+    }
+
+    /* COUNTDOWN */
+    .count-box {
+      background: linear-gradient(135deg, #1e3f20 0%, #143416 100%);
+      color: #f3f4f6;
+      padding: 12px 8px;
+      border-radius: 8px;
+      min-width: 72px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* EMERALD DUST EFFECT (Ganti Kelopak Bunga biasa) */
+    .gold-dust {
+      position: fixed; 
+      top: -20px; 
+      pointer-events: none; 
+      z-index: 998;
+      animation: fall linear infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg) scale(0); opacity: 0; }
+      15% { opacity: 0.7; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(105vh) rotate(360deg) scale(1); opacity: 0; }
+    }
+
+    /* OPENING VIDEO */
+    #video-opening {
+      position: fixed; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%;
+      object-fit: cover; 
+      z-index: 1000; 
+      background: #091a0c;
+    }
+
+    .hidden-custom { display: none !important; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(244, 245, 240, 1);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c5a850;
+      border-radius: 3px;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e3f20;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      z-index: 99999;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border: 1px solid #c5a850;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+      opacity: 0;
+    }
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div id="invite-wrapper">
+  
+  <!-- AUDIO MEWAH (Instrumental Klasik romantis / Beautiful In White piano cover) -->
+  <audio id="music" loop>
+    <source src="https://github.com/elrosyadi296/elrosyadi296.github.io/raw/refs/heads/main/Shane%20Filan%20-%20Beautiful%20In%20White.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- LUXURY INTRO VIDEO / MOTION GRAPHIC -->
+  <video autoplay id="video-opening" muted playsinline>
+    <source src="https://github.com/elrosyadi296/elrosyadi296/raw/refs/heads/main/undangan/motion.mp4" type="video/mp4">
+  </video>
+
+  <!-- CUSTOM TOAST NOTIFICATION (Ganti alert browser agar lebih elegan) -->
+  <div id="toast">Notifikasi</div>
+
+  <!-- 2. COVER SECTION (PEMBERITAHUAN AWAL) -->
+  <div id="cover">
+    <!-- Ornamen Atas -->
+    <div class="mb-4">
+      <svg class="w-12 h-12 mx-auto text-[#b3923b]" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+      </svg>
+    </div>
+    
+    <p class="font-sans-lux text-xs tracking-[0.3em] text-[#8c7430] uppercase mb-3">The Wedding Invitation of</p>
+    
+    <h1 class="font-title text-4xl md:text-5xl lg:text-6xl my-4 tracking-wide text-stone-800 leading-tight">
+      Adrian <br class="md:hidden"><span class="font-serif-lux italic font-light text-[#b3923b] text-3xl md:text-5xl">&amp;</span> Clara
+    </h1>
+    
+    <p class="font-serif-lux italic text-lg text-stone-600 mb-8 border-y border-[#e8d08d]/50 py-2 px-8 inline-block tracking-wider">
+      12 . 09 . 2026
+    </p>
+    
+    <!-- Animasi Amplop SVG Emas Mewah -->
+    <div class="w-48 h-48 mb-6 flex items-center justify-center relative">
+      <div class="absolute inset-0 bg-gradient-to-tr from-[#e8d08d]/20 to-[#b3923b]/20 rounded-full animate-pulse"></div>
+      <svg class="w-24 h-24 text-[#b3923b] drop-shadow-lg relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"></path>
+      </svg>
+    </div>
+
+    <div class="max-w-md bg-stone-100/80 border border-stone-200/50 px-6 py-3 rounded-xl mb-6 text-center shadow-inner">
+      <p class="text-xs text-stone-500 uppercase tracking-widest mb-1">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+      <p class="text-base font-semibold text-stone-800" id="nama-tamu-cover">Tamu Kehormatan</p>
+    </div>
+
+    <button onclick="bukaUndangan()" class="gold-gradient-bg text-stone-900 px-8 py-3.5 rounded-full font-semibold tracking-widest text-xs shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 uppercase">
+      Buka Undangan
+    </button>
+  </div>
+
+  <!-- 3. MAIN CONTENT (ISI UTAMA) -->
+  <div class="max-w-2xl mx-auto p-4 md:p-6 space-y-12 hidden-custom pb-24" id="main-content">
+    
+    <!-- SALAM PEMBUKA -->
+    <section class="fade glass-card p-8 rounded-3xl text-center mt-12 border-t-4 border-[#b3923b]">
+      <div class="w-16 h-[1px] bg-[#c5a850] mx-auto mb-6"></div>
+      <p class="font-arabic text-3xl text-[#1e3f20] mb-4 leading-loose">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</p>
+      <p class="font-serif-lux italic text-stone-600 leading-relaxed text-sm">
+        Dengan memohon rahmat dan ridho Allah SWT, kami mengharapkan kehadiran Bapak/Ibu/Saudara/i dalam momen suci pernikahan kami:
+      </p>
+      <div class="w-16 h-[1px] bg-[#c5a850] mx-auto mt-6"></div>
+    </section>
+
+    <!-- PROFIL MEMPELAI -->
+    <section class="fade glass-card p-8 rounded-3xl text-center space-y-8 relative overflow-hidden">
+      <!-- Ornamen Pojok -->
+      <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-[#c5a850]"></div>
+      <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-[#c5a850]"></div>
+      
+      <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
+        <!-- Mempelai Pria -->
+        <div class="flex-1 text-center space-y-3">
+          <div class="relative inline-block">
+            <div class="absolute inset-0 rounded-full border-2 border-[#c5a850] scale-105 animate-pulse"></div>
+            <img class="rounded-full mx-auto w-36 h-36 object-cover border-4 border-white shadow-xl" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300" alt="Adrian Raditya" />
+          </div>
+          <h3 class="font-serif-lux text-2xl font-semibold text-stone-800">Adrian Raditya, S.T.</h3>
+          <p class="text-[11px] text-stone-500 tracking-wider">Putra kedua dari</p>
+          <p class="text-xs font-medium text-stone-700">Bp. Ir. Hermawan Baskoro & Ibu Sekar Ayuningtyas</p>
+        </div>
+
+        <!-- Simbol & -->
+        <div class="font-serif-lux italic text-5xl text-[#b3923b] my-4 md:my-0">&amp;</div>
+
+        <!-- Mempelai Wanita -->
+        <div class="flex-1 text-center space-y-3">
+          <div class="relative inline-block">
+            <div class="absolute inset-0 rounded-full border-2 border-[#c5a850] scale-105 animate-pulse"></div>
+            <img class="rounded-full mx-auto w-36 h-36 object-cover border-4 border-white shadow-xl" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=300" alt="Clara Anindya" />
+          </div>
+          <h3 class="font-serif-lux text-2xl font-semibold text-stone-800">Clara Anindya, M.B.A.</h3>
+          <p class="text-[11px] text-stone-500 tracking-wider">Putri sulung dari</p>
+          <p class="text-xs font-medium text-stone-700">Bp. Dr. H. Wijaya Kusuma & Ibu Hj. Amalia Lestari</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENYELENGGARAAN & WAKTU (AKAD NIKAH & RESEPSI) -->
+    <section class="fade glass-card p-8 rounded-3xl text-center space-y-6">
+      <h2 class="font-title text-3xl text-stone-800 tracking-wide">Save The Date</h2>
+      <div class="w-12 h-[2px] bg-gradient-to-r from-transparent via-[#b3923b] to-transparent mx-auto"></div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-stone-700 text-sm mt-4">
+        <!-- Akad Nikah -->
+        <div class="bg-stone-50/80 p-5 rounded-2xl border border-[#c5a850]/20 space-y-2">
+          <p class="font-sans-lux text-xs tracking-widest text-[#8c7430] uppercase font-semibold">Akad Nikah</p>
+          <p class="font-serif-lux text-lg font-bold text-stone-800">Sabtu, 12 September 2026</p>
+          <p class="font-medium text-[#1e3f20]">Pukul 08.00 - 10.00 WIB</p>
+          <p class="text-xs text-stone-500 pt-2 border-t border-stone-200/50">
+            <strong>The Glasshouse - Ritz Mansion</strong><br>
+            Jl. Jend. Sudirman Kav. 21, Jakarta Selatan
+          </p>
+        </div>
+
+        <!-- Resepsi Pernikahan -->
+        <div class="bg-stone-50/80 p-5 rounded-2xl border border-[#c5a850]/20 space-y-2">
+          <p class="font-sans-lux text-xs tracking-widest text-[#8c7430] uppercase font-semibold">Resepsi</p>
+          <p class="font-serif-lux text-lg font-bold text-stone-800">Sabtu, 12 September 2026</p>
+          <p class="font-medium text-[#1e3f20]">Pukul 11.00 - 14.00 WIB</p>
+          <p class="text-xs text-stone-500 pt-2 border-t border-stone-200/50">
+            <strong>Grand Ballroom Ritz Mansion</strong><br>
+            Jl. Jend. Sudirman Kav. 21, Jakarta Selatan
+          </p>
+        </div>
+      </div>
+
+      <!-- COUNTDOWN TIMER MEWAH -->
+      <div class="pt-4">
+        <p class="text-xs tracking-widest uppercase text-stone-400 mb-3">Menghitung Hari Bahagia</p>
+        <div class="flex justify-center gap-3 md:gap-4">
+          <div class="count-box"><div id="cd-d" class="text-xl md:text-2xl font-bold font-serif-lux">00</div><small class="text-[10px] tracking-wider uppercase opacity-85">Hari</small></div>
+          <div class="count-box"><div id="cd-h" class="text-xl md:text-2xl font-bold font-serif-lux">00</div><small class="text-[10px] tracking-wider uppercase opacity-85">Jam</small></div>
+          <div class="count-box"><div id="cd-m" class="text-xl md:text-2xl font-bold font-serif-lux">00</div><small class="text-[10px] tracking-wider uppercase opacity-85">Menit</small></div>
+          <div class="count-box"><div id="cd-s" class="text-xl md:text-2xl font-bold font-serif-lux">00</div><small class="text-[10px] tracking-wider uppercase opacity-85">Detik</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AYAT SUCI -->
+    <section class="fade glass-card p-8 rounded-3xl text-center space-y-4">
+      <p class="font-arabic text-2xl leading-loose text-stone-700">
+        وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً ۗاِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ
+      </p>
+      <p class="font-serif-lux italic text-stone-600 text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
+        "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+      </p>
+      <p class="text-[10px] uppercase tracking-widest text-[#8c7430] font-bold">— QS. Ar-Rum: 21</p>
+    </section>
+
+    <!-- ACARA TASYAKURAN KELUARGA (MINGGU) -->
+    <section class="fade glass-card p-8 rounded-3xl text-center space-y-4">
+      <h2 class="font-title text-2xl text-stone-800 tracking-wide">Acara Tasyukuran</h2>
+      <p class="text-xs text-stone-400 tracking-widest uppercase">Walimatul 'Ursy Keluarga</p>
+      <div class="bg-[#1e3f20]/5 p-5 rounded-2xl border border-[#1e3f20]/10 max-w-md mx-auto">
+        <p class="font-serif-lux text-lg font-bold text-[#1e3f20]">Minggu, 13 September 2026</p>
+        <p class="text-xs text-stone-500 mt-2 font-medium">Pukul 10.00 WIB s.d Selesai</p>
+        <div class="h-[1px] bg-stone-300 my-3"></div>
+        <p class="text-xs text-stone-600">
+          <strong>Kediaman Mempelai Wanita</strong><br>
+          Kawasan Menteng Residence, Blok C-12, Jakarta Pusat
+        </p>
+      </div>
+    </section>
+
+    <!-- RSVP (KONFIRMASI KEHADIRAN) -->
+    <section class="fade glass-card p-8 rounded-3xl">
+      <h3 class="font-title text-2xl mb-2 text-center text-stone-800">RSVP</h3>
+      <p class="text-xs text-stone-500 text-center uppercase tracking-widest mb-6">Konfirmasi Kehadiran Anda</p>
+      
+      <form class="space-y-4" id="form-rsvp">
+        <div>
+          <label class="block text-[10px] uppercase tracking-widest text-stone-500 font-semibold mb-1">Nama Lengkap</label>
+          <input class="w-full p-3.5 bg-white/70 border border-stone-200 rounded-xl outline-none focus:ring-1 focus:ring-[#b3923b] text-sm" id="rsvp-nama" required type="text" placeholder="Tulis nama Anda..." />
+        </div>
+        
+        <div>
+          <label class="block text-[10px] uppercase tracking-widest text-stone-500 font-semibold mb-1">Status Kehadiran</label>
+          <select class="w-full p-3.5 bg-white/70 border border-stone-200 rounded-xl outline-none focus:ring-1 focus:ring-[#b3923b] text-sm" id="rsvp-hadir">
+            <option value="Hadir">Insya Allah, Saya Hadir</option>
+            <option value="Tidak Hadir">Maaf, Saya Tidak Bisa Hadir</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[10px] uppercase tracking-widest text-stone-500 font-semibold mb-1">Pesan & Doa Restu</label>
+          <textarea class="w-full p-3.5 bg-white/70 border border-stone-200 rounded-xl outline-none focus:ring-1 focus:ring-[#b3923b] text-sm" id="rsvp-ucapan" placeholder="Tulis doa restu terbaik Anda..." rows="3"></textarea>
+        </div>
+
+        <button class="gold-gradient-bg text-stone-900 py-3.5 w-full rounded-xl font-semibold text-xs tracking-wider uppercase shadow-md hover:shadow-xl transition-all duration-300" type="submit">Kirim Konfirmasi</button>
+      </form>
+    </section>
+
+    <!-- DAFTAR UCAPAN & DOA -->
+    <section class="fade glass-card p-8 rounded-3xl">
+      <h3 class="font-serif-lux text-xl font-semibold mb-2 text-center text-stone-800">Doa Restu Sahabat & Keluarga</h3>
+      <div class="w-8 h-[1px] bg-[#c5a850] mx-auto mb-4"></div>
+      
+      <div class="space-y-3 max-h-80 overflow-y-auto pr-1" id="display-ucapan">
+        <div class="text-center py-8">
+          <svg class="animate-spin h-5 w-5 text-[#b3923b] mx-auto mb-2" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <p class="italic text-stone-400 text-xs">Memuat ucapan terbaik...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEDDING GIFT -->
+    <section class="fade glass-card p-8 rounded-3xl text-center space-y-6">
+      <h3 class="font-title text-2xl text-stone-800 tracking-wide">Wedding Gift</h3>
+      <p class="text-xs text-stone-500 leading-relaxed max-w-sm mx-auto">
+        Doa restu Anda merupakan hadiah terindah bagi kami. Namun apabila Anda ingin memberikan tanda kasih secara digital, silakan melalui opsi di bawah ini:
+      </p>
+
+      <div class="max-w-xs mx-auto bg-stone-50/80 p-5 rounded-2xl border border-stone-200/50 space-y-3 shadow-inner">
+        <p class="text-xs uppercase tracking-widest text-stone-400 font-bold">Transfer Bank</p>
+        <p class="text-base font-bold text-stone-700">Bank Mandiri</p>
+        <p class="text-lg font-mono text-[#1e3f20] font-semibold tracking-wider">1370018293041</p>
+        <p class="text-xs text-stone-500">a.n Clara Anindya</p>
+        
+        <button class="bg-[#1e3f20]/10 hover:bg-[#1e3f20]/20 text-[#1e3f20] px-6 py-2 rounded-full text-xs font-semibold tracking-wider transition" onclick="copyText()">Salin Nomor Rekening</button>
+      </div>
+
+      <!-- Representasi QRIS Mewah menggunakan SVG -->
+      <div class="pt-2">
+        <p class="text-xs uppercase tracking-widest text-stone-400 font-bold mb-4">Gifts via QRIS</p>
+        <div class="relative inline-block bg-white p-4 rounded-2xl shadow-md border border-stone-200">
+          <img class="mx-auto w-40 h-40 object-contain rounded-lg" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyPs9c0mclx5mR6972fWelFfDOow3aefgEutOx78qc0duXB9Wa5d5gBAASMlqrC3zcdrW0cdwG5JMYuDzQ0KwuqTnVBJtcToMlXghzgncgZ559IupCeEgHn0UY7D0oGc0DdWY5uELERxNvkl4Q8xfxhKHYuUXDbfZ1TAATgwGAMRh5EeGJsomk6l99FSWa/s976/qris.jpeg" alt="QRIS Code" />
+          <div class="absolute bottom-1 right-1 bg-stone-800 text-white text-[8px] px-2 py-0.5 rounded font-mono">QRIS SECURE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PETUNJUK LOKASI (MAPS) -->
+    <section class="fade glass-card p-3 rounded-3xl shadow-xl overflow-hidden space-y-3">
+      <div class="bg-[#1e3f20]/5 p-4 rounded-2xl">
+        <p class="font-serif-lux text-base font-bold text-[#1e3f20] text-center">Petunjuk Lokasi (The Ritz Mansion)</p>
+      </div>
+      <div class="h-64 rounded-2xl overflow-hidden border border-stone-200">
+        <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.253915152504!2d106.81845181534164!3d-6.230219962747124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e092100dbd%3A0xc48c4cf33fb7efcf!2sThe%20Ritz-Carlton%20Jakarta%2C%20Mega%20Kuningan!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" style="border: 0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <!-- MAPS TASYAKURAN -->
+    <section class="fade glass-card p-3 rounded-3xl shadow-xl overflow-hidden space-y-3">
+      <div class="bg-[#1e3f20]/5 p-4 rounded-2xl">
+        <p class="font-serif-lux text-base font-bold text-[#1e3f20] text-center">Lokasi Tasyukuran (Menteng Residence)</p>
+      </div>
+      <div class="h-64 rounded-2xl overflow-hidden border border-stone-200">
+        <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5750212711093!2d106.82939921534151!3d-6.187588362345814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f43063fdf391%3A0x7df6c63da5a2da1c!2sMenteng%2C%20Kec.%20Menteng%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1680000000001!5m2!1sid!2sid" style="border: 0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-8 opacity-80 text-xs">
+      <p class="bg-white/40 inline-block px-5 py-2 rounded-full text-stone-500 font-sans-lux tracking-widest text-[9px] uppercase border border-[#c5a850]/20">
+        EXCLUSIVE DESIGN BY ROYAL CREATIVE
+      </p>
+    </footer>
+  </div>
+
+</div>
+
+<!-- SCRIPT HANDLERS -->
+<script>
+// API/URL Google Apps Script dari script awal Anda
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyO7GH5voW_Gch5m3JPpVOXf75K-MUHGLwSO2WQ7mEdWN8iokbtNFjfFqV9PGoZKnk_/exec';
+
+// 1. URL & PARAMETER TAMU
+const u = new URLSearchParams(window.location.search);
+const t = u.get("to");
+if(t) {
+  const decodedName = decodeURIComponent(t);
+  document.getElementById("nama-tamu-cover").innerText = decodedName;
+  document.getElementById("rsvp-nama").value = decodedName;
+}
+
+// 2. VIDEO INTRO HANDLING
+const video = document.getElementById('video-opening');
+video.onended = () => hapusVideo();
+setTimeout(() => hapusVideo(), 2200); // Otomatis hilang setelah 2.2 detik jika video loading lambat
+
+function hapusVideo() {
+  video.style.transition = "opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
+  video.style.opacity = "0";
+  setTimeout(() => video.classList.add("hidden-custom"), 1200);
+}
+
+// 3. FITUR BUKA UNDANGAN (PLAY MUSIC & REVEAL CONTENT)
+function bukaUndangan() {
+  const c = document.getElementById("cover");
+  const m = document.getElementById("main-content");
+  const s = document.getElementById("music");
+  
+  c.style.transform = "scale(1.05)";
+  c.style.opacity = "0";
+  
+  setTimeout(() => {
+    c.classList.add("hidden-custom");
+    m.classList.remove("hidden-custom");
+    s.play().catch(e => console.log("Audio play blocked by browser policy"));
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    loadUcapan();
+  }, 1000);
+}
+
+// 4. COUNTDOWN TARGET (12 SEPTEMBER 2026)
+const target = new Date("September 12, 2026 08:00:00").getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const d = target - now;
+  if(d > 0){
+    document.getElementById("cd-d").innerText = String(Math.floor(d / (1000 * 60 * 60 * 24))).padStart(2, '0');
+    document.getElementById("cd-h").innerText = String(Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+    document.getElementById("cd-m").innerText = String(Math.floor((d % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+    document.getElementById("cd-s").innerText = String(Math.floor((d % (1000 * 60)) / 1000)).padStart(2, '0');
+  }
+}, 1000);
+
+// 5. TOAST NOTIFICATION ELEGAN
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+// 6. LOAD DATA DOA / UCAPAN DARI API
+async function loadUcapan() {
+  const container = document.getElementById("display-ucapan");
+  try {
+    const response = await fetch(SCRIPT_URL);
+    const result = await response.json();
+    if (result.status === "success" && result.data.length > 0) {
+      container.innerHTML = "";
+      result.data.reverse().forEach(item => {
+        const div = document.createElement("div");
+        div.className = "bg-white/50 p-4 rounded-xl border-l-2 border-[#b3923b] shadow-sm mb-3 transition hover:bg-white/80";
+        div.innerHTML = `
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-serif-lux font-semibold text-stone-800 text-xs">${item.nama}</span>
+            <span class="text-[9px] px-2 py-0.5 rounded-full ${item.kehadiran === 'Hadir' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-100'}">${item.kehadiran}</span>
+          </div>
+          <p class="italic text-stone-600 text-[11px] leading-relaxed mt-1">"${item.ucapan || '-'}"</p>
+        `;
+        container.appendChild(div);
+      });
+    } else {
+      container.innerHTML = "<p class='text-center italic text-stone-400 text-xs py-8'>Belum ada ucapan. Jadilah yang pertama memberikan doa restu.</p>";
+    }
+  } catch (e) {
+    container.innerHTML = "<p class='text-center text-rose-400 text-xs py-8'>Gagal memuat ucapan terbaru.</p>";
+  }
+}
+
+// 7. RSVP FORM SUBMISSION
+document.getElementById("form-rsvp").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.disabled = true; 
+  btn.innerText = "Mengirim Konfirmasi...";
+  
+  const fd = new FormData();
+  fd.append('nama', document.getElementById("rsvp-nama").value);
+  fd.append('hadir', document.getElementById("rsvp-hadir").value);
+  fd.append('ucapan', document.getElementById("rsvp-ucapan").value);
+
+  fetch(SCRIPT_URL, { method: 'POST', body: fd })
+  .then(() => {
+    showToast("Konfirmasi kehadiran Anda telah tersimpan!");
+    e.target.reset();
+    loadUcapan();
+  })
+  .catch(() => {
+    showToast("Gagal mengirim konfirmasi. Silakan coba kembali.");
+  })
+  .finally(() => {
+    btn.disabled = false; 
+    btn.innerText = "Kirim Konfirmasi";
+  });
+});
+
+// 8. COPY REKENING (Sesuai panduan iframe: document.execCommand)
+function copyText() {
+  const tempInput = document.createElement("input");
+  tempInput.value = "1370018293041";
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  try {
+    document.execCommand("copy");
+    showToast("Nomor rekening Mandiri berhasil disalin!");
+  } catch (err) {
+    showToast("Gagal menyalin rekening.");
+  }
+  document.body.removeChild(tempInput);
+}
+
+// 9. ANIMASI DEKORASI EMERALD & GOLD DUST MELAYANG
+function createDust() {
+  const dustColors = ['#e8d08d', '#b3923b', '#1e3f20', '#c5a850'];
+  for(let i=0; i<20; i++){
+    let dust = document.createElement("div");
+    dust.className = "gold-dust";
+    
+    // Pilih warna acak dari palet mewah
+    const randomColor = dustColors[Math.floor(Math.random() * dustColors.length)];
+    dust.style.background = randomColor;
+    
+    // Ukuran acak
+    const size = (2 + Math.random() * 5) + "px";
+    dust.style.width = size;
+    dust.style.height = size;
+    
+    dust.style.left = Math.random() * 100 + "%";
+    dust.style.animationDuration = (6 + Math.random() * 8) + "s";
+    dust.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(dust);
+  }
+}
+createDust();
+
+// 10. INTERSECTION OBSERVER UNTUK ANIMASI FADE-IN SAAT SCROLL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { 
+    if(e.isIntersecting) e.target.classList.add("show"); 
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
